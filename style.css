@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    background:rgba(170, 132, 235, 0.452) ;
+}
+.container{
+    width: 90%;
+    max-width: 550px;
+    margin: 40px;
+    padding: 20px;
+
+}
+.container h1{
+    width: 80px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-left: 20px;
+}
+.container img{
+    width: 45px;
+}
