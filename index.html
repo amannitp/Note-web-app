@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1><img src="./img/notes.png" alt=""><span>Notes</span> </h1>
-         <button><img src="./img/edit.png" > Create Notes</button>
+         <button class="btn"><img src="./img/edit.png" > Create Notes</button>
         <div class="notes-container">
             <!-- <p contenteditable="true" class="input-box"> <img src="./img/delete.png" ></p> -->
 
@@ -18,18 +18,50 @@
     
 </body>
 <script>
-    const createNotes=document.querySelector('button')
+    const createBtn=document.querySelector('.btn')
     const notesContainer=document.querySelector('.notes-container')
-    createNotes.addEventListener('click',notesCreation)
+    let notes=document.querySelector('.input-box')
+    
+
+    function showNotes(){
+        notesContainer.innerHTML=localStorage.getItem('notes')
+    }
+    showNotes()
+
+    function updateStorage(){
+        localStorage.setItem('notes',notesContainer.innerHTML)
+    }
+
+    createBtn.addEventListener('click',createNotes)
 
 
-    function notesCreation(){
-        const input=document.createElement('p')
-        input.setAttribute('contenteditable',"true")
-        input.classList.add('input-box')
-        input.innerHTML='<img src="./img/delete.png" >'
-        notesContainer.appendChild(input)
-        console.log(notesContainer)
+    function createNotes(){
+        let inputBox=document.createElement('p')
+        let img=document.createElement('img')
+        inputBox.setAttribute('contenteditable',"true")
+        inputBox.className='input-box'
+        img.src='./img/delete.png'
+        notesContainer.appendChild(inputBox).appendChild(img)
+       
+    }
+    
+    notesContainer.addEventListener('click',deleteNotes)
+
+    function deleteNotes(e){
+   
+        console.log(notes)
+        if(e.target.tagName==='IMG'){
+            e.target.parentElement.remove()
+            updateStorage()
+          
+        }else if(e.target.tagName==='P'){
+            notes=document.querySelectorAll('.input-box')
+            notes.forEach(note=>{
+                note.onkeyup=function (){
+                    updateStorage()
+                }
+            })
+        }
     }
 </script>
 </html>
