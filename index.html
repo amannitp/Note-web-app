@@ -11,10 +11,25 @@
         <h1><img src="./img/notes.png" alt=""><span>Notes</span> </h1>
          <button><img src="./img/edit.png" > Create Notes</button>
         <div class="notes-container">
-            <p contenteditable="true" class="input-box"></p>
+            <!-- <p contenteditable="true" class="input-box"> <img src="./img/delete.png" ></p> -->
 
         </div>
     </div>
     
 </body>
+<script>
+    const createNotes=document.querySelector('button')
+    const notesContainer=document.querySelector('.notes-container')
+    createNotes.addEventListener('click',notesCreation)
+
+
+    function notesCreation(){
+        const input=document.createElement('p')
+        input.setAttribute('contenteditable',"true")
+        input.classList.add('input-box')
+        input.innerHTML='<img src="./img/delete.png" >'
+        notesContainer.appendChild(input)
+        console.log(notesContainer)
+    }
+</script>
 </html>
